@@ -1,0 +1,13 @@
+{
+  "name": "buenplan-fullstack",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Catálogo de descuentos y beneficios con Node.js y SQLite",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  }
+}

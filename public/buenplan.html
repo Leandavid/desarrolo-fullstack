@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f8f8f4">
+    <meta name="description" content="Encuentra descuentos, experiencias y beneficios de marcas que te gustan. Un buen plan cuesta menos.">
+    <title>BuenPlan | Beneficios para disfrutar más</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/buenplan.css">
+    <script src="/buenplan.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="BuenPlan, inicio"><span class="brand-sun" aria-hidden="true">✳</span> buenplan<span class="brand-dot">.</span></a>
+      <nav class="main-nav" aria-label="Navegación principal">
+        <button class="nav-link is-active" type="button" data-view="offers">Descubrir</button>
+        <a class="nav-link" href="#como-funciona">Cómo funciona</a>
+        <button class="nav-link" type="button" data-view="redemptions">Mis canjes<span class="redemption-count" id="redemption-count">0</span></button>
+      </nav>
+      <a class="header-cta" href="#ofertas">Ver beneficios <span aria-hidden="true">↗</span></a>
+      <div class="user-profile" aria-label="Usuario actual"><span class="user-avatar" aria-hidden="true">M</span><span id="current-user-name">mocab</span></div>
+      <button class="mobile-menu-button" id="mobile-menu-button" type="button" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span></button>
+    </header>
+
+    <main>
+      <section class="hero" id="hero">
+        <img class="hero-image" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=2200&q=90" alt="Café recién preparado en una mesa de madera">
+        <div class="hero-shade"></div>
+        <div class="hero-inner">
+          <p class="hero-kicker"><span class="hero-kicker-star">✳</span> EL CLUB DE LOS BUENOS PLANES</p>
+          <h1>Más de lo que<br>te gusta. <em>Por menos.</em></h1>
+          <p class="hero-copy">Descuentos y beneficios para llenar tu semana de planes que sí se antojan.</p>
+          <a class="hero-button" href="#ofertas">Encuentra tu próximo plan <span aria-hidden="true">↓</span></a>
+          <div class="hero-footnote"><span class="hero-footnote-line"></span> BUENOS LUGARES. MEJORES PRECIOS.</div>
+        </div>
+        <div class="hero-side-note"><span>01 — 05</span><span class="hero-side-rule"></span><span>DESCUBRE</span></div>
+      </section>
+
+      <section class="quick-facts" aria-label="Resumen de beneficios">
+        <div class="fact-intro"><span class="fact-star" aria-hidden="true">✳</span><span>Un buen plan<br>te queda cerca.</span></div>
+        <div class="fact"><strong id="fact-offers">—</strong><span>beneficios para descubrir</span></div>
+        <div class="fact"><strong id="fact-categories">—</strong><span>formas de disfrutar</span></div>
+        <div class="fact-note">Planes nuevos,<br><b>cada semana.</b></div>
+      </section>
+
+      <section class="offers-section" id="ofertas">
+        <div class="section-heading">
+          <div><p class="section-kicker">TUS PRÓXIMOS FAVORITOS</p><h2 id="offers-title">Buenos planes, <em>mejor precio.</em></h2></div>
+          <p class="section-description" id="offers-description">Elige algo rico, algo nuevo o simplemente algo para ti.</p>
+        </div>
+
+        <div class="catalog-toolbar">
+          <div class="category-filters" id="category-filters" aria-label="Filtrar por categoría"></div>
+          <label class="search-field"><span class="search-glass" aria-hidden="true"></span><input id="offer-search" type="search" placeholder="Busca una marca o un plan" autocomplete="off"><kbd>/</kbd></label>
+        </div>
+
+        <p class="result-line" id="result-line" aria-live="polite">Cargando beneficios...</p>
+        <div class="offer-grid" id="offer-grid" aria-live="polite" aria-busy="true"></div>
+      </section>
+
+      <section class="how-section" id="como-funciona">
+        <div class="how-heading"><p class="section-kicker">ASÍ DE FÁCIL</p><h2>El plan es tuyo.<br><em>El descuento también.</em></h2><p>Sin puntos que juntar ni letras chiquitas escondidas. Solo beneficios para usar.</p></div>
+        <div class="steps">
+          <article class="step"><span class="step-number">01</span><span class="step-icon step-search" aria-hidden="true"></span><h3>Encuentra</h3><p>Explora tus marcas, lugares y experiencias favoritas.</p></article>
+          <article class="step"><span class="step-number">02</span><span class="step-icon step-ticket" aria-hidden="true"></span><h3>Activa</h3><p>Abre el beneficio y genera tu código en un toque.</p></article>
+          <article class="step"><span class="step-number">03</span><span class="step-icon step-smile" aria-hidden="true">☺</span><h3>Disfruta</h3><p>Muéstralo al pagar y aprovecha tu buen plan.</p></article>
+        </div>
+        <span class="how-decoration" aria-hidden="true">b.</span>
+      </section>
+
+      <section class="closing-banner">
+        <div><p class="section-kicker">QUE NO SE TE PASE NINGUNO</p><h2>Algo bueno te<br>está esperando.</h2></div>
+        <a class="closing-link" href="#ofertas">Explora los beneficios <span aria-hidden="true">↗</span></a>
+        <span class="closing-spark" aria-hidden="true">✳</span>
+      </section>
+    </main>
+
+    <footer class="site-footer"><a class="brand footer-brand" href="/">buenplan<span class="brand-dot">.</span></a><span>Descuentos para disfrutar más.</span><a href="#ofertas">Ver beneficios ↑</a></footer>
+
+    <dialog class="offer-dialog" id="offer-dialog" aria-labelledby="dialog-title">
+      <button class="dialog-close" id="dialog-close" type="button" aria-label="Cerrar">×</button>
+      <div class="dialog-image-wrap"><img id="dialog-image" alt=""><span class="dialog-discount" id="dialog-discount"></span></div>
+      <div class="dialog-content">
+        <div class="dialog-brand-row"><span class="brand-avatar" id="dialog-avatar"></span><div><strong id="dialog-brand"></strong><span id="dialog-location"></span></div></div>
+        <p class="dialog-category" id="dialog-category"></p>
+        <h2 id="dialog-title"></h2>
+        <p class="dialog-description" id="dialog-description"></p>
+        <div class="terms-box"><strong>Condiciones del beneficio</strong><p id="dialog-terms"></p><span class="expiry-line" id="dialog-expiry"></span></div>
+        <div class="redeem-result" id="redeem-result" hidden><span>Tu código BuenPlan</span><div><strong id="redeem-code"></strong><button id="copy-code" type="button">Copiar</button></div><p>Muéstralo al momento de pagar para activar tu beneficio.</p></div>
+        <button class="redeem-button" id="redeem-button" type="button">Obtener mi beneficio <span aria-hidden="true">→</span></button>
+        <p class="dialog-error" id="dialog-error" role="alert"></p>
+      </div>
+    </dialog>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
