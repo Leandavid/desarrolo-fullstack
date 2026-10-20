@@ -122,6 +122,19 @@ function isValidDate(value) {
   return value === null || value === '' || (typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(`${value}T00:00:00`)));
 }
 
+function foldText(value) {
+  return value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+function foldExpression(expression) {
+  let folded = `lower(${expression})`;
+  for (const [accented, plain] of [['á', 'a'], ['é', 'e'], ['í', 'i'], ['ó', 'o'], ['ú', 'u'], ['ü', 'u'], ['ñ', 'n']]) {
+    folded = `replace(${folded}, '${accented}', '${plain}')`;
+    folded = `replace(${folded}, '${accented.toUpperCase()}', '${plain}')`;
+  }
+  return folded;
+}
+
 async function handleApi(request, response, url) {
   const pathname = url.pathname;
 
@@ -140,8 +153,10 @@ async function handleApi(request, response, url) {
       parameters.category = category;
     }
     if (search) {
-      conditions.push('(brand LIKE @search OR title LIKE @search OR description LIKE @search OR category LIKE @search)');
-      parameters.search = `%${search}%`;
+      const pattern = `%${foldText(search).replace(/[\\%_]/g, (character) => `\\${character}`)}%`;
+      const columns = ['brand', 'title', 'description', 'category'];
+      conditions.push(`(${columns.map((column) => `${foldExpression(column)} LIKE @search ESCAPE '\\'`).join(' OR ')})`);
+      parameters.search = pattern;
     }
     const offers = database.prepare(`
       SELECT * FROM offers WHERE ${conditions.join(' AND ')}
@@ -197,18 +212,6 @@ async function handleApi(request, response, url) {
 
   if (pathname === '/api/health' && request.method === 'GET') {
     return sendJson(response, 200, { status: 'ok', database: 'sqlite' });
-  }
-
-  if (pathname === '/api/stats' && request.method === 'GET') {
-    const stats = database.prepare(`
-      SELECT
-        COUNT(*) AS total,
-        SUM(CASE WHEN completed = 1 THEN 1 ELSE 0 END) AS completed,
-        SUM(CASE WHEN completed = 0 THEN 1 ELSE 0 END) AS pending,
-        SUM(CASE WHEN completed = 0 AND due_date < date('now', 'localtime') THEN 1 ELSE 0 END) AS overdue
-      FROM tasks
-    `).get();
-    return sendJson(response, 200, Object.fromEntries(Object.entries(stats).map(([key, value]) => [key, value ?? 0])));
   }
 
   if (pathname === '/api/tasks' && request.method === 'GET') {
